@@ -17,3 +17,11 @@ spec:
         image: nginx:1.21
         ports:
         - containerPort: 80
+        resources:
+          cpu: "100m"
+        env:
+        - name: WELCOME_MSG
+          valueFrom:
+            configMapKeyRef:
+              name: guestobook-config
+              key: WELCOME_MSG
