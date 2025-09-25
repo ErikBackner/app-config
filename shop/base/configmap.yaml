@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: shop-config
+data:
+  SHOP_MSG: "Hej från BASE-shop (gäller alla miljöer)"
+

@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shop-ui
+spec:
+  selector:
+    matchLabels:
+      app: shop-ui
+  template:
+    metadata:
+      labels:
+        app: shop-ui
+    spec:
+      containers:
+        - name: shop
+          image: nginx:1.21
+          ports:
+            - containerPort: 80
+          env:
+            - name: SHOP_MSG
+              valueFrom:
+                configMapKeyRef:
+                  name: shop-config
+                  key: SHOP_MSG
