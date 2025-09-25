@@ -4,6 +4,7 @@ metadata:
   name: guestbook-ui
   namespace: default
 spec:
+
   selector:
     matchLabels:
       app: guestbook-ui
@@ -13,15 +14,15 @@ spec:
         app: guestbook-ui
     spec:
       containers:
-      - name: guestbook
+      - name: guestbook              
         image: nginx:1.21
         ports:
         - containerPort: 80
         resources:
-          cpu: "100m"
-        env:
-        - name: WELCOME_MSG
-          valueFrom:
-            configMapKeyRef:
-              name: guestobook-config
-              key: WELCOME_MSG
+          requests:
+            cpu: "100m"
+        envFrom:
+        - configMapRef:
+            name: guestbook-config      
+
+
