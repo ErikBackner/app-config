@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: guestbook-ui
+spec:
+  selector:
+    matchLabels:
+      app: guestbook-ui
+  template:
+    metadata:
+      labels:
+        app: guestbook-ui
+    spec:
+      containers:
+        - name: guestbook
+          image: nginx:1.21
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              cpu: "100m"
+          env:
+            - name: WELCOME_MSG
+              valueFrom:
+                configMapKeyRef:
+                  name: guestbook-config
+                  key: WELCOME_MSG
+
